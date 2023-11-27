@@ -5,7 +5,7 @@ using System.Net.Mime;
 using TMPro;
 using UnityEngine;
 
-public class EfeitoDigitador : MonoBehaviour
+public class aMAE : MonoBehaviour
 {
     private TextMeshProUGUI compTexto;
     private string mensagemOriginal;
