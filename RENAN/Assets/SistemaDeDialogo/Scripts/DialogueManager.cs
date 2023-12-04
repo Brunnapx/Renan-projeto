@@ -10,16 +10,22 @@ public class DialogueManager : MonoBehaviour
 
     public List<string> lista1, lista2;
 
+    public Dialogo dialogo;
+
     // Start is called before the first frame update
     void Start()
     {
-        //StartCoroutine(ExibirSequencia(lista1));
+        //PlayDialogo(dialogo);
+    }
+
+    public void PlayDialogo(Dialogo diag)
+    {
+        StartCoroutine(ExibirSequencia(diag.lista));
     }
 
     IEnumerator ExibirSequencia(List<string> lista)
     {
         if (rodando) yield break;
-
         rodando = true;
         proximo = false;
         botaoContinuar.SetActive(false);
@@ -40,22 +46,13 @@ public class DialogueManager : MonoBehaviour
             proximo = false;
         }
         caixaDeDialogo.Limpar();
-        StartCoroutine(ExibirSequencia(lista));
+        rodando = false;
+        StopCoroutine(ExibirSequencia(lista));
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            StartCoroutine(ExibirSequencia(lista1));
-        }
-
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            StartCoroutine(ExibirSequencia(lista2));
-        }
-        
         if (!caixaDeDialogo.imprimindo)
         {
             if (Input.GetKeyDown(KeyCode.Space))
